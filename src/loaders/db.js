@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+import { dbUri } from "../config/index.js"
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://admin:u9mHCGMlTbpNVD5N@cluster0.0duoewg.mongodb.net/?retryWrites=true&w=majority', {
+        await mongoose.connect(dbUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -13,4 +14,4 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB;
+export default connectDB;

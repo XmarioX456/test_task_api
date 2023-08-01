@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const TaskSchema = new mongoose.Schema({
     taskID: {type: Number, required: true},
@@ -13,4 +13,4 @@ const TaskSchema = new mongoose.Schema({
     section: {type: Number}
 });
 
-module.exports = TaskSchema;
+export default TaskSchema;
