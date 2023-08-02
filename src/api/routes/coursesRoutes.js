@@ -6,7 +6,7 @@ import {
     addTaskToCourse,
     updateTaskInCourse,
     delTaskFromCourse
-} from "../controllers/CoursesControllers.js";
+} from "../controllers/coursesControllers.js";
 
 const router = Router();
 
