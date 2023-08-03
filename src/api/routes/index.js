@@ -1,6 +1,6 @@
 import { Router } from "express";
-import courses from "./CoursesRoutes.js";
-import logbooks from "./LogbookRoutes.js";
+import courses from "./coursesRoutes.js";
+import logbooks from "./logbookRoutes.js";
 
 const router = Router();
 

@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
-const { Schema, model } = mongoose;
-import TaskSchema from "./TaskSchema.js";
+import { Schema, model } from "mongoose";
+import TaskSchema from "./taskSchema.js";
 
 const CourseSchema = new Schema({
     courseName: {type: String, required: true},

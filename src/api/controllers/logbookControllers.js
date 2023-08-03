@@ -1,4 +1,4 @@
-import Logbook from "../models/LogbookModel.js";
+import Logbook from "../models/logbookModel.js";
 
 export const addLogbook = async (req, res) => {
     try {
