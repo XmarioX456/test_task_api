@@ -1,8 +1,8 @@
-import Logbook from "../models/logbookModel.js";
+import LogbookModel from "../models/logbookModel.js";
 
 export const addLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.create(req.body);
+        const logbook = await LogbookModel.create(req.body);
         res.status(200).json(logbook);
     } catch (error) {
         console.log(error)
@@ -12,7 +12,7 @@ export const addLogbook = async (req, res) => {
 
 export const getLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.findById(req.params.logbookId);
+        const logbook = await LogbookModel.findById(req.params.logbookId);
         if (!logbook) {
             return res.status(404).json({message: error.message});
         }
@@ -25,7 +25,7 @@ export const getLogbook = async (req, res) => {
 
 export const delLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.findByIdAndDelete(req.params.logbookId);
+        const logbook = await LogbookModel.findByIdAndDelete(req.params.logbookId);
         if (!logbook) {
             return res.status(404).json({ error: "Logbook not found" });
         }
@@ -37,7 +37,7 @@ export const delLogbook = async (req, res) => {
 
 export const addTaskToLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.findById(req.params.logbookId);
+        const logbook = await LogbookModel.findById(req.params.logbookId);
         if (!logbook) {
             return res.status(404).json({ error: "Logbook not found" });
         }
@@ -53,7 +53,7 @@ export const addTaskToLogbook = async (req, res) => {
 
 export const updateTaskInLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.findById(req.params.logbookId);
+        const logbook = await LogbookModel.findById(req.params.logbookId);
         if (!logbook) {
             return res.status(404).json({error : "Logbook not found"});
         }
@@ -73,7 +73,7 @@ export const updateTaskInLogbook = async (req, res) => {
 
 export const delTaskFromLogbook = async (req, res) => {
     try {
-        const logbook = await Logbook.findById(req.params.logbookId);
+        const logbook = await LogbookModel.findById(req.params.logbookId);
         if (!logbook) {
             return res.status(404).json({ error: "Logbook not found"});
         }

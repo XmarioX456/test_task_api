@@ -1,4 +1,5 @@
 import UserModel from "../models/userModel.js";
+import LogbookModel from "../models/logbookModel.js";
 
 // add user to db
 export const addUser = async (req, res) => {
@@ -74,6 +75,33 @@ export const delUser = async (req, res) => {
     }
 };
 
+//get all logbooks linked to user
+export const getLogbooksByUsers = async (req, res) => {
+    try {
+        //get user from db
+        const user = await UserModel.findById(req.params.userID);
+
+        //check if user isn't in db
+        if (!user) {
+            return res.status(404).json({message: "User not found."});
+        }
+
+        const logbooksInUser = user.logbooks;
+
+        const logbooks = [];
+
+        for (const logbookInUser of logbooksInUser) {
+            const logbook = await LogbookModel.findById(logbookInUser.logbookID);
+            logbooks.push(logbook);
+        }
+        res.status(200).json(logbooks);
+    } catch (error){
+        console.log(error);
+        res.status(500).json({message: error.message});
+    }
+
+};
+
 //link logbook to user in db
 export const addLogbookToUser = async (req, res) => {
     try{
@@ -83,6 +111,12 @@ export const addLogbookToUser = async (req, res) => {
         //check if user isn't in db
         if (!user){
             return res.status(404).json({message: "User not found."});
+        }
+
+        //check if logbook exists
+        const logbook = await LogbookModel.findById(req.body.logbookID);
+        if (!logbook) {
+            return res.status(404).json({message: "Logbook not found."});
         }
 
         //link logbook to user from request

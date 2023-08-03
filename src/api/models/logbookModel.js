@@ -10,5 +10,5 @@ const LogbookSchema = new Schema({
     tasks: [TaskSchema]
 });
 
-const Logbook = model("Logbook", LogbookSchema);
-export default Logbook;
+const LogbookModel = model("Logbook", LogbookSchema);
+export default LogbookModel;

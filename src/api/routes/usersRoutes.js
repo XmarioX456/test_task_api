@@ -5,6 +5,7 @@ import {
     getUser,
     updateUser,
     delUser,
+    getLogbooksByUsers,
     addLogbookToUser,
     delLogbookFromUser
 } from "../controllers/userControllers.js";
@@ -28,6 +29,8 @@ router.put("/users/:userID", updateUser);
 //delete user
 //:userID - id of user("_id" field in db)
 router.delete("/users/:userID", delUser);
+
+router.get("/users/:userID/logbooks", getLogbooksByUsers);
 
 //link logbook to user
 //:userID - id of user("_id" field in db)
