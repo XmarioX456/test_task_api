@@ -24,5 +24,5 @@ const LogbookSchema = new Schema({
     )]
 });
 
-const Logbook = model("Logbook", LogbookSchema);
-export default Logbook;
+const logbookModel = model("Logbook", LogbookSchema);
+export default logbookModel;

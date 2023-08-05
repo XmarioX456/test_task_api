@@ -1,11 +1,11 @@
-import Course from "../models/courseModel.js";
-import Logbook from "../models/logbookModel.js";
+import courseModel from "../models/courseModel.js";
+import logbookModel from "../models/logbookModel.js";
 
 //add new course to db
 export const addCourse = async (req, res) => {
     try {
         //create new model of course and save it to db
-        const course = await Course.create(req.body);
+        const course = await courseModel.create(req.body);
 
         res.status(200).json(course);
     } catch (error) {
@@ -17,7 +17,7 @@ export const addCourse = async (req, res) => {
 //get all courses from db
 export const getCourses = async (req, res) => {
     try {
-        const courses = await Course.find();
+        const courses = await courseModel.find();
         res.status(200).json(courses);
     } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ export const getCourses = async (req, res) => {
 export const getCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -47,7 +47,7 @@ export const getCourse = async (req, res) => {
 export const delCourse = async (req, res) => {
     try {
         // find course in db and delete it
-        const course = await Course.findByIdAndDelete(req.params.courseID);
+        const course = await courseModel.findByIdAndDelete(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -65,7 +65,7 @@ export const delCourse = async (req, res) => {
 export const getTasksFromCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -83,7 +83,7 @@ export const getTasksFromCourse = async (req, res) => {
 export const getTaskFromCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -111,7 +111,7 @@ export const getTaskFromCourse = async (req, res) => {
 export const addTaskToCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -143,7 +143,7 @@ export const addTaskToCourse = async (req, res) => {
 export const updateTaskInCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {
@@ -166,7 +166,7 @@ export const updateTaskInCourse = async (req, res) => {
         await course.save();
 
         //get all logbooks
-        const logbooks = await Logbook.find();
+        const logbooks = await logbookModel.find();
         if (logbooks) {
             //find if any logbook is based on this course
             const logbookIndex = logbooks.findIndex((logbook) => logbook.basedOn.toString() === course.courseName.toString());
@@ -190,7 +190,7 @@ export const updateTaskInCourse = async (req, res) => {
 export const delTaskFromCourse = async (req, res) => {
     try {
         //get course from db
-        const course = await Course.findById(req.params.courseID);
+        const course = await courseModel.findById(req.params.courseID);
 
         //check if course exists
         if (!course) {

@@ -6,5 +6,5 @@ const CourseSchema = new Schema({
     tasks: [TaskSchema]
 });
 
-const Course = model("Course", CourseSchema);
-export default Course;
+const courseModel = model("Course", CourseSchema);
+export default courseModel;

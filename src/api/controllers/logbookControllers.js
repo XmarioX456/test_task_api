@@ -1,14 +1,14 @@
-import Logbook from "../models/logbookModel.js";
-import Course from "../models/courseModel.js";
+import logbookModel from "../models/logbookModel.js";
+import courseModel from "../models/courseModel.js";
 
 //add new logbook to db
 export const addLogbook = async (req, res) => {
     try {
         //create model and write it to db
-        const logbook = await Logbook.create(req.body);
+        const logbook = await logbookModel.create(req.body);
 
         //get all courses
-        const courses = await Course.find();
+        const courses = await courseModel.find();
 
         //check if any courses exists
         if (!courses){
@@ -37,7 +37,7 @@ export const addLogbook = async (req, res) => {
 //get all logbooks from db
 export const getLogbooks = async (req, res) =>{
     try {
-        const logbooks = await Logbook.find();
+        const logbooks = await logbookModel.find();
         res.status(200).json(logbooks);
     } catch (error) {
         console.log(error);
@@ -49,7 +49,7 @@ export const getLogbooks = async (req, res) =>{
 export const getLogbook = async (req, res) => {
     try {
         //get one logbook by id from db
-        const logbook = await Logbook.findById(req.params.logbookID);
+        const logbook = await logbookModel.findById(req.params.logbookID);
 
         //check if logbook isn't in db
         if (!logbook) {
@@ -68,7 +68,7 @@ export const getLogbook = async (req, res) => {
 export const delLogbook = async (req, res) => {
     try {
         //get logbook from db and delete from db
-        const logbook = await Logbook.findByIdAndDelete(req.params.logbookID);
+        const logbook = await logbookModel.findByIdAndDelete(req.params.logbookID);
 
         //check if logbook isn't in db
         if (!logbook) {
@@ -86,7 +86,7 @@ export const delLogbook = async (req, res) => {
 export const updateTaskInLogbook = async (req, res) => {
     try {
         //get logbook from db
-        const logbook = await Logbook.findById(req.params.logbookID);
+        const logbook = await logbookModel.findById(req.params.logbookID);
 
         //check if logbook isn't in db
         if (!logbook) {
@@ -119,7 +119,7 @@ export const updateTaskInLogbook = async (req, res) => {
 export const delTaskFromLogbook = async (req, res) => {
     try {
         //get logbook from db
-        const logbook = await Logbook.findById(req.params.logbookID);
+        const logbook = await logbookModel.findById(req.params.logbookID);
 
         //check if logbook isn't in db
         if (!logbook) {
