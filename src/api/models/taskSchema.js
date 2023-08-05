@@ -1,7 +1,7 @@
 import {Schema} from "mongoose";
 
 const TaskSchema = new Schema({
-    task_no: { type: String },
+    task_no: { type: Number },
     description: { type: String },
     reference: { type: String },
     type: { type: String },
