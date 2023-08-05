@@ -92,7 +92,7 @@ export const getTaskFromCourse = async (req, res) => {
 
         //get task, which we need and return it
         for (const task of course.tasks){
-            if (task.task_no.toString() === req.params.taskID){
+            if (task.task_no.toString() === req.params.task_no){
                 return res.status(200).json(task)
             }
         }
@@ -122,7 +122,10 @@ export const addTaskToCourse = async (req, res) => {
         const newTask = req.body;
 
         //set the next task number
-        newTask.task_no = course.tasks.slice(-1).task_no;
+        newTask.task_no = course.tasks[course.tasks.length-1].task_no+1;
+        if (newTask.task_no === undefined){
+            newTask.task_no = 1
+        }
 
         //add new task to course
         course.tasks.push(newTask);
