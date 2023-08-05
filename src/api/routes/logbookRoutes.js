@@ -6,7 +6,7 @@ import {
     addTaskToLogbook,
     updateTaskInLogbook,
     delTaskFromLogbook
-} from "../controllers/LogbookControllers.js";
+} from "../controllers/logbookControllers.js";
 
 const router = Router();
 
