@@ -139,7 +139,7 @@ export const delTaskFromLogbook = async (req, res) => {
 
         //save changes to db
         await logbook.save();
-
+      
         res.status(200).json({ message: "Deleted successfully" });
     } catch (error) {
         console.log(error)

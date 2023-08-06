@@ -177,8 +177,7 @@ export const updateTaskInCourse = async (req, res) => {
                 await logbooks[logbookIndex].save();
             }
         }
-
-
+      
         res.status(200).json(course);
     } catch (error) {
         console.log(error);
@@ -186,7 +185,6 @@ export const updateTaskInCourse = async (req, res) => {
     }
 };
 
-//delete task from course
 export const delTaskFromCourse = async (req, res) => {
     try {
         //get course from db
