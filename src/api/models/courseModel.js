@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema, model } = mongoose;
+import { Schema, model } from "mongoose";
 import TaskSchema from "./taskSchema.js";
 
 const CourseSchema = new Schema({
@@ -7,5 +6,5 @@ const CourseSchema = new Schema({
     tasks: [TaskSchema]
 });
 
-const Course = model("Course", CourseSchema);
-export default Course;
+const courseModel = model("Course", CourseSchema);
+export default courseModel;
