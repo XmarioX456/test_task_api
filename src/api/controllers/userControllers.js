@@ -86,14 +86,16 @@ export const getLogbooksByUsers = async (req, res) => {
             return res.status(404).json({message: "User not found."});
         }
 
+        //get all logbooksID linked to this user
         const logbooksInUser = user.logbooks;
 
+        //generate array of logbooks linked to user
         const logbooks = [];
-
         for (const logbookInUser of logbooksInUser) {
             const logbook = await LogbookModel.findById(logbookInUser.logbookID);
             logbooks.push(logbook);
         }
+
         res.status(200).json(logbooks);
     } catch (error){
         console.log(error);
