@@ -30,6 +30,8 @@ router.put("/users/:userID", updateUser);
 //:userID - id of user("_id" field in db)
 router.delete("/users/:userID", delUser);
 
+//get all logbooks linked to user
+//:userID - id of user("_id" field in db)
 router.get("/users/:userID/logbooks", getLogbooksByUsers);
 
 //link logbook to user

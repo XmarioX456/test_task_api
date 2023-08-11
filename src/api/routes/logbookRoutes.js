@@ -5,7 +5,9 @@ import {
     getLogbooks,
     delLogbook,
     updateTaskInLogbook,
-    delTaskFromLogbook
+    delTaskFromLogbook,
+    getTasksFromLogbook,
+    getTaskFromLogbook
 } from "../controllers/logbookControllers.js";
 
 const router = Router();
@@ -23,6 +25,15 @@ router.get("/logbooks/:logbookID", getLogbook);
 //delete logbook by id from db
 //:logbookID - id of logbook("_id" field in db)
 router.delete("/logbooks/:logbookID", delLogbook);
+
+//get all tasks linked to logbook
+//:logbookID - id of logbook("_id" field in db)
+router.get("/logbooks/:logbookID/tasks", getTasksFromLogbook);
+
+//get one task linked to logbook
+//:logbookID - id of logbook("_id" field in db)
+//:task_no - task number("task_no" field in db)
+router.get("/logbooks/:logbookID/tasks/:task_no", getTaskFromLogbook);
 
 //update task in logbook
 //:logbookID - id of logbook("_id" field in db)

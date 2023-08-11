@@ -82,6 +82,52 @@ export const delLogbook = async (req, res) => {
     }
 };
 
+// get all tasks, which are in logbook
+export const getTasksFromLogbook = async (req, res) => {
+    try {
+        //get logbook from db
+        const logbook = await logbookModel.findById(req.params.logbookID);
+
+        //check if logbook exists
+        if (!logbook) {
+            return res.status(404).json({ error: "Logbook not found." });
+        }
+
+        //return tasks from logbook
+        res.status(200).json(logbook.tasks);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+};
+
+// get one task by task number, which is in logbook
+export const getTaskFromLogbook = async (req, res) => {
+    try {
+        //get logbook from db
+        const logbook = await logbookModel.findById(req.params.logbookID);
+
+        //check if logbook exists
+        if (!logbook) {
+            return res.status(404).json({ error: "Logbook not found." });
+        }
+
+        //get task, which we need and return it
+        for (const task of logbook.tasks){
+            if (task.task_no.toString() === req.params.task_no){
+                return res.status(200).json(task)
+            }
+        }
+
+        //response if task won't be found
+        res.status(404).json({ error: "Task not found in logbook." });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: error.message});
+    }
+};
+
 //update task in logbook in db
 export const updateTaskInLogbook = async (req, res) => {
     try {
